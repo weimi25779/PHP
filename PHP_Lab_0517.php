@@ -5,8 +5,9 @@
  * Date: 2017/5/17
  * Time: 下午 03:56
  */
-echo 'Hello Word';
+echo 'Hello Word<br>';
+echo 'DDDDDDDD'
+
+
 ?>
 
-<h1>123</h1>
-222
