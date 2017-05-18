@@ -4,6 +4,6 @@
   $___=true;
   $_123='abcd';
 
-//  echo $gettype($__);
-//  echo var_dump($ABC);
+  echo gettype($_123),'<br>';
+  //echo var_dump($ABC);
 ?>
