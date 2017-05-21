@@ -36,7 +36,6 @@ if (isset($_GET['xx']) && isset($_GET['yy']) && isset($_GET['operator'])) {
     <meta charset="utf-8"/>
     <title>簡易計算</title>
 </head>
-
 <body>
 <form>
     <input type="text" name="xx" id="x" value="<?php echo $x; ?>"/>

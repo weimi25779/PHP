@@ -5,7 +5,6 @@ if(isset($_GET['year'])){
         $result='為閏年';
     else
         $result='不為閏年';
-
 }
 ?>
 <html>

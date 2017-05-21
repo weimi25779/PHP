@@ -49,7 +49,6 @@ if (isset($_GET['xx']) && isset($_GET['yy']) && isset($_GET['operator'])) {
     <input type="text" name="yy" id="y" value="<?php echo $y; ?>"/>
     <input type="submit" value="="/>
     <?php echo $result;?>
-
 </form>
 </body>
 </html>
