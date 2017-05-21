@@ -18,6 +18,5 @@ if(isset($_GET['year'])){
     <input type="submit" value="送出"/>
     <?php echo $result; ?>
 </form>
-
 </body>
 </html>

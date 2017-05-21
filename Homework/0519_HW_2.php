@@ -16,6 +16,7 @@ if(isset($_GET['year'])){
     <meta charset="utf-8"/>
     <title>閏年判斷</title>
 </head>
+
 <body>
     <form>
       <input type="text" name="year" id="year" value="請輸入年份,例如:2000"/>

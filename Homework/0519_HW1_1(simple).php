@@ -1,5 +1,4 @@
 <?php
-
 if (isset($_GET['xx']) && isset($_GET['yy']) && isset($_GET['operator'])) {
     $x = $_GET['xx'];
     $y = $_GET['yy'];

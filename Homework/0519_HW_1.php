@@ -28,7 +28,6 @@ if (isset($_GET['xx']) && isset($_GET['yy']) && isset($_GET['operator'])) {
     $y = $_GET['yy'];
     $operator=$_GET['operator'];
     $result= calculate($operator,$x,$y);
-
 }
 ?>
 <html>
