@@ -1,20 +1,20 @@
 <?php
 $poker=array();
-//for()
+for($i=0;$i<52;$i++) $check[]=false;
 for($i=0;$i<52;$i++){
     //檢查機制
     do{
         $temp=rand(0,51);
         $isRepeat=false;
-        for($j=0;$j<$i;$j++){
-            if($poker[$j]==$temp){
-                //重複了
-                $isRepeat=true;
-                break;
+            if(!$check[$temp]){
+                //如果check[ ],是空的(即裡面沒值),就執行下列
+                $poker[]=$temp;
+                $check[$temp]=true;
+            }else{
+                $isRepeat=true; //都檢查完且沒重複,就會執行這段,然後跳出while迴圈
             }
-        }
+
     }while($isRepeat);
 
-    $poker[]=$temp;
     echo $poker[$i].'<br>';
 }
