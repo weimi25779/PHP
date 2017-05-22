@@ -1,4 +1,5 @@
 <?php
+
 function calculate($operator,$x,$y)
 {
     switch ($operator) {
