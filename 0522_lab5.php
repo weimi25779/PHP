@@ -21,6 +21,7 @@
 
             echo "<td bgcolor='" .
                 ((($j+$row)%2==0)?'yellow':'orange') . "'>";
+                //"<td bgcolor=' " ." ' >"
             for ($i = 1; $i <= 9; $i++) {
                 $result = $new_j * $i;
                 echo "$new_j X {$i}=$result<br>";
