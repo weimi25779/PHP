@@ -3,10 +3,8 @@
   $n=52;
   for($i=0;$i<$n;$i++){
       $poker[]=$i;
+      echo "{$poker[$i]}\r";
   }
-
-  for($i=0;$i<$n;$i++)
-    echo "{$poker[$i]}\r";
 
    echo "<hr>";
 
