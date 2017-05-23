@@ -18,8 +18,7 @@
 //                    echo "<td bgcolor='orange'>";
 //                }
 //            }
-//            echo "<td bgcolor='".
-//                ((($j+$row)%2==0?'yellow':'orange')."'>";
+
             echo "<td bgcolor='" .
                 ((($j+$row)%2==0)?'yellow':'orange') . "'>";
             for ($i = 1; $i <= 9; $i++) {
