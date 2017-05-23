@@ -21,10 +21,13 @@ foreach($poker as $i=>$value){
                 "<font color='black' size='5'>&clubsuit;</font>");
     $value=array('A',2,3,4,5,6,7,8,9,10,'J','Q','K');
         foreach ($player as $sb){
+            //$sb,指player[$i%4],例:0,1,2,3(4位)
+            //$card,指player[(int)($i/4)],例:0,1,2,3,...,51/4(每人13張撲克牌)
             sort($sb);
+            //echo var_dump($sb);
             echo '<tr>';
             foreach ($sb as $card){
-                // echo "<td>{$card}</td>";
+                //echo "<td>{$card}</td>";
                 echo "<td>{$suit[(int)($card/13)]}{$value[$card%13]}</td>";
             }
             echo '</tr>';
