@@ -18,17 +18,18 @@ if (isset($_GET['dirname'])){
         <th>Delete</th>
     </tr>
     <?php
+    //$fp:似指標
     //$fp=opendir('.');
     //  echo readdir($fp);
     $fp = opendir($dirname);
     while ($file = readdir($fp)){
         //echo "{$file}<br>";
         echo '<tr>';
-        echo "<td>{$file}</td>";
-        echo "<td></td>";
-        echo "<td></td>";
-        echo "<td></td>";
-        echo "<td></td>";
+        echo "<td>{$file}</td>"; //FileName行
+        echo "<td></td>"; //Type行
+        echo "<td></td>"; //Size行
+        echo "<td></td>"; //mTime行
+        echo "<td></td>"; //Delete行
         echo '</tr>';
     }
     ?>
