@@ -9,3 +9,4 @@ foreach ($upload['error'] as $index => $error){  //將陣列($upload['error'])�
 }
 
 //foreach ( 陣列 as $key => $value ),參考http://www.wibibi.com/info.php?tid=204
+//以Java來看,即array[0]=香蕉,array[1]=蘋果,array[2]=芭樂
