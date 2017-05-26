@@ -1,33 +1,37 @@
 <?php
 class Cart {
-    private $memberId;
+    private $member;
     private $list;
-    function __construct(){
-        $this->list = array();
+    function __construct($member){
+        $this->list = array(); //陣列
+        $this->member = $member; //物件
     }
-    function addItem($pid, $qty){
-        $this->list[$pid] = $qty;
+    function addItem($pid, $qty){  //pid:產品id , qty:產品數量
+        $this->list[$pid] = $qty;  //
     }
     function removeItem($pid){
-        unset($this->list[$pid]);
+        unset($this->list[$pid]);//一個pid對應一個qty
     }
     function getList(){
         return $this->list;
     }
+    function getMember(){
+        return $this->member;
+    }
 }
 class Member {
-    var $twid;  // Member Object has-a TWID Object
+    var $twid;  // Member Object has a TWID Object
     function __construct($twid){
         $this->twid = new TWID($twid);
     }
 }
 class TWID{
     var $id;
-    static  $counter=0;
+    static $counter=0; //counter為共用變數
     function __construct($id)
     {
         $this->id=$id;
-        TWID::$counter++;
+        TWID::$counter++; //: :B類別使用A類別的屬性/方法!
     }
     function  getGender(){
         return true;
