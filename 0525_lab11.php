@@ -6,6 +6,7 @@
 //  $myBike=new Bike;
 //  $myBike->speed=0;
 //  echo $myBike->speed;
+//不安全的寫法,因為從外部就可以修改Bike的值(speed)
 
 class Bike{
     private $speed=0;
