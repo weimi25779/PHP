@@ -1,6 +1,7 @@
 <table width="100%" border="1">
     <?php
-    $start=2; $col=5; $line=4;
+    $start=1; $col=5; $line=4;
+    //col:列 , line:行
     for($row=0;$row<$line;$row++){
         echo '<tr>';
         for($j=$start;$j<=$col;$j++) {
