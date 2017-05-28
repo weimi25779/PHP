@@ -14,6 +14,8 @@ for($i=0;$i<52;$i++){
         }
     }while($isRepeat);
 
+    //while(ture):再度回到do ; while(false):跳出迴圈
+
     $poker[]=$temp;
     echo $poker[$i].'<br>';
 }

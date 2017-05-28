@@ -13,7 +13,7 @@ echo "{$pre},{$who}<br>";
 }
 
 function SayHello(){
-$names=func_get_args();
+$names=func_get_args(); //取得函數裡的參數列表
 foreach ($names as $name){
 echo "Hello,{$name}<br>";
 }

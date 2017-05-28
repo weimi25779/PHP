@@ -1,5 +1,5 @@
 <?php
-$dirname = ".";
+$dirname = ".";  //dirname:目錄名稱
 if (isset($_GET['dirname'])){
     $dirname = $_GET['dirname'];
 }

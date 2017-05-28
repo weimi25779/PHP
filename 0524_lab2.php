@@ -7,6 +7,7 @@
     $area=$_REQUEST['area'];
     $gender=$_REQUEST['gender'];
     $like=$_REQUEST['like'];
+
     echo $account .'<br>';
     echo $password .'<br>';
     echo $birthday .'<br>';

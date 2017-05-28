@@ -11,7 +11,7 @@ for($i=0;$i<52;$i++){
                 $poker[]=$temp;
                 $check[$temp]=true;
             }else{
-                $isRepeat=true; //都檢查完且沒重複,就會執行這段,然後跳出while迴圈
+                $isRepeat=true; //若check[]裡為true表示有值,則有重複,故將isRepeat設為true
             }
 
     }while($isRepeat);

@@ -1,4 +1,5 @@
 <?php
+//將身分字號檢查,弄成一個函式
 function isRightTWId(string $twid){
     $ret = 0; //格式錯誤
     if(preg_match('/^[A-Z][12][0-9]{8}$/',$twid)>0) {
@@ -32,6 +33,6 @@ function createLottery(){
     for ($i=0; $i<6; $i++){
         $ret[] = $lottery[$i];
     }
-    sort($ret);
+    sort($ret); //排序
     return $ret;
 }

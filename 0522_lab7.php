@@ -1,7 +1,7 @@
 <?php
   $a[0]=12;
   $a[7]='Brad';
-  echo gettype($a);
+  echo gettype($a).'<br>';
   var_dump($a);
   echo count($a);
   echo '<hr>';
