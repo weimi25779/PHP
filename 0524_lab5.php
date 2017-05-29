@@ -1,6 +1,6 @@
 <?php
-$dirname = ".";  //dirname:目錄名稱
-if (isset($_GET['dirname'])){
+$dirname = ".";  //dirname:目錄名稱  "." : 指本目錄
+if (isset($_GET['dirname'])){   //如果有輸入目錄位置
     $dirname = $_GET['dirname'];
 }
 ?>

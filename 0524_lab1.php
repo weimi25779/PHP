@@ -6,6 +6,9 @@
 <!--</form>-->
 
 <form action="0524_lab2.php" method="get">
+<!--    note、HTML 表單的 method 參數與 PHP 的接收方式必須是對應的，
+例如表單 method 設定用 post 傳遞資料，PHP 必須使用 $_PSOT 來接收。
+網址欄位會出現表單欄位的參數以及參數值，這就是 GET method 的特色-->
     Name:<input type="text" name="account" /><br>
     Password:<input type="password" name="password" /><br>
     Birthday:<input type="date" name="birthday" /><br>
