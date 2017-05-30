@@ -1,0 +1,10 @@
+<?php
+    $handle=fopen("sample3.txt","r+");
+    $contents=fopen("sample4.txt","w");
+    while(!feof($handle)){
+        $word=fgetc($handle);
+        $str=strtoupper($word);
+        fwrite($contents,$str);
+    }
+    fclose($handle);
+    fclose($contents);
