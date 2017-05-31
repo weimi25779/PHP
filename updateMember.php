@@ -1,6 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['id'])) header("Location: brad38.php");
+if (!isset($_SESSION['id'])) header("Location: 0531_lab2.php");
+
 $id = $_SESSION['id'];
 $account = $_GET['account'];
 $passwd = $_GET['passwd'];
