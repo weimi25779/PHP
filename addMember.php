@@ -1,7 +1,8 @@
 <?php
     if(isset($_GET['account'])){
         $account=$_GET['account'];
-        $passwd=$_GET['passwd'];
+        //$passwd=$_GET['passwd'];
+        $passwd=password_hash($_GET['passwd'],PASSWORD_DEFAULT); //0601,使名碼-->暗碼
         $realname=$_GET['realname'];
         $sql="insert into member (account,passwd,realname)".
         "values ('{$account}','{$passwd}','{$realname}')";
