@@ -6,7 +6,7 @@
         $realname=$_GET['realname'];
         $sql="insert into member (account,passwd,realname)".
         "values ('{$account}','{$passwd}','{$realname}')";
-        $db=@new mysqli('127.0.0.1','root','root','iii');
+        $db=@new mysqli('127.0.0.1','root','root','iii') or die("Server Busy");
         $db->query($sql);
         header("Location:0531_lab2.php");
     }

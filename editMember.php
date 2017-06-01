@@ -1,6 +1,7 @@
 <?php
     session_start();
-    if (!isset($_GET['editid'])) header("Location: brad38.php");
+    if (!isset($_GET['editid'])) header("Location: 0531_lab2.php");
+
     $editid = $_GET['editid'];
     $_SESSION['id'] = $editid;
     $sql = "select * from member where id={$editid}";

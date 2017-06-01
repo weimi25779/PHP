@@ -1,6 +1,10 @@
 <?php
 session_start();
 if (!isset($_SESSION['id'])) header("Location: 0531_lab2.php");
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 $id = $_SESSION['id'];
 $account = $_GET['account'];
 $passwd = $_GET['passwd'];

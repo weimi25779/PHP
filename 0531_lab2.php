@@ -1,7 +1,7 @@
 <?php
     $db = @new mysqli('127.0.0.1',
-        'root','root','iii');
-    if (isset($_GET['delid'])){
+        'root','root','iii') or die("Server Busy");
+    if (isset($_GET['delid'])){ //如果收到要刪除的id,就執行刪除
         $delid = $_GET['delid'];
         $sql = "delete from member where id={$delid}";
         $db->query($sql);
