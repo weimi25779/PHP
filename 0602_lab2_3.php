@@ -12,4 +12,5 @@
         $addr = $row->Address;
         $memo = $row->HostWords;
         $pdo->prepare($sql)->execute([$fid,$fname,$tel,$addr,$memo]);
+        //將資料加入到資料庫(opendata)的table(food)裡
     }

@@ -7,10 +7,10 @@
     $sql = "select * from food ";
 
     //$sql = "select * from food limit 0,4";
-    //0: index 4: 一次看幾筆資料(例如:0.1.2.3=>4筆)
+    //0: index ,4: 一次看幾筆資料(例如:0.1.2.3=>4筆)
 
     //$sql = "select * from food order by addr desc";
-    //order: 按addr排序, desc:顛倒
+    //order: 按addr排序, desc:顛倒(從下到上)
 
     //$sql = "select * from food where addr like '%中山路%'  order by addr desc"  ;
     //where: 找%(不拘)中山路%(不拘)

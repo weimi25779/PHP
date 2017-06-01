@@ -1,6 +1,4 @@
 <?php
-
-
     $json = '{
                 "id":"123",
                 "name": "brad",

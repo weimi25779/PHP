@@ -4,12 +4,14 @@
     $sql='insert into member(account,passwd,realname) values("brad","123456","Brad")';
 
     $sql='select * from member';
+    //建立查詢資料表(member)的SQL語法
+
     $result=$db->query($sql);
 
-//    $row=$result->fetch_object($sql);
-//    echo $row->id.'<br>';
-//    echo $row->account.'<br>';
-//    echo $row->passwd.'<br>';
+    //$row=$result->fetch_object($sql);
+    //echo $row->id.'<br>';
+    //echo $row->account.'<br>';
+    //echo $row->passwd.'<br>';
 
     while($row=$result->fetch_object()){  //fetch_object:抓物件
         echo "{$row->id}:{$row->account}:{$row->passwd}<br>";

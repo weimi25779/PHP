@@ -9,9 +9,9 @@
         $passwd=$_POST['passwd'];
         $sql="select * from member where account=?";
 
-        //$stmt = $pdo->prepare($sql);
-        //$stmt->execute([$account]);
-        ($stmt = $pdo->prepare($sql))->execute([$account]); //第12和13行的簡寫
+        $stmt = $pdo->prepare($sql); //prepare(): 預處理操作
+        $stmt->execute([$account]);  //execute(): 執行預處理操作
+        //($stmt = $pdo->prepare($sql))->execute([$account]); 第12和13行的簡寫
         if ($stmt->rowCount()>0){  //判斷是否帳號有(即判斷$stmt有無物件)
             $memberObj = $stmt->fetchObject();
             if (password_verify($passwd, $memberObj->passwd)){
