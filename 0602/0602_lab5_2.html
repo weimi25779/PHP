@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   <!--直接引用Google伺服器的jQuery -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button" id="click" value="Click">
+    <div id="here"></div>
+    <script>
+        $("#click").click(function() {
+            setInterval(doit,1000); /* 每1秒(1000),重複執行doit() */
+        });
+        function doit(){
+            $.get("0602_lab3.php", function (data, status) {
+                if (status == 'success'){
+                    $("#here").html(data);
+                }
+            });
+        };
+
+    </script>
+</body>
+</html>

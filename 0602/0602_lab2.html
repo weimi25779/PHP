@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+<!--AJAX-->
 <script>
     var xmlhttp;
+    //XMLHttpRequest 用於在後臺與伺服器交換資料。這意味著可以在不重新載入整個網頁的情況下，對網頁的某部分進行更新
     if (window.XMLHttpRequest) {
-        // code for modern browsers
+        // code for modern browsers ex: IE7+、Firefox、Chrome
         xmlhttp = new XMLHttpRequest();
     } else {
         // code for old IE browsers
@@ -12,13 +14,13 @@
         //var here = document.getElementById('here');
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                //document.getElementById("here").innerHTML =
-                // this.responseText;
-                document.getElementById("here").innerHTML =
-                    this.responseText;
+                //readyState == 4 ,請求已完成，且回應已就緒
+                //status == 200 ,OK
+                //document.getElementById("here").innerHTML = this.responseText;
+                document.getElementById("here").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET", "0602_lab3.php", true);
+        xmlhttp.open("GET", "0602_lab3.php", true); //True:非同步, False:同步
         xmlhttp.send();
     }
 </script>
