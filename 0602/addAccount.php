@@ -15,3 +15,7 @@
     $stmt = $pdo->prepare($sql);    // statement(陳述) SQL用語
     $stmt->execute([$account,$passwd,$rname]);
     header("Location: loginv2.php");
+
+
+
+

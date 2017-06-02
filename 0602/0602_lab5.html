@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button" id="click" value="Click">
+    <div id="here"></div>
+    <script>
+        $("#click").click(function(){
+            $.get("0602_lab3.php", function(data, status){
+                //$("#here").html(status);
+                if (status == 'success'){
+                    $("#here").html(data);
+                }
+            });
+        });
+        function doit () {
+
+        }
+    </script>
+</body>
+</html>
