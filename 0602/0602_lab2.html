@@ -12,6 +12,10 @@
     }
     function test1() {
         //var here = document.getElementById('here');
+
+        // onreadystatechange 事件
+        // 當請求被發送到伺服器時，我們需要執行一些基於回應的任務。
+        // 每當 readyState 改變時，就會觸發 onreadystatechange 事件。
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 //readyState == 4 ,請求已完成，且回應已就緒

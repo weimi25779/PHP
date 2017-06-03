@@ -12,7 +12,7 @@
     if ($stmt->rowCount()>0){
         $memberObj = $stmt->fetchObject();
         $dbPasswd = $memberObj->passwd;
-        if (password_verify($passwd, $dbPasswd)){
+        if (password_verify($passwd, $dbPasswd)){ //$passwd: 使用者輸入的密碼,$dbPasswd: 資料庫的密碼
             // OK
             $_SESSION['member'] = $memberObj;
             header("Location: mainv2.php");

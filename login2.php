@@ -13,7 +13,7 @@
         $stmt->execute([$account]);
         //($stmt = $pdo->prepare($sql))->execute([$account]); 第12和13行的簡寫
 
-        if ($stmt->rowCount()>0){  //判斷是否有帳號(id),
+        if ($stmt->rowCount()>0){  //判斷是否有帳號(account),>0表示有,<0表示沒有
             $memberObj = $stmt->fetchObject();
             if (password_verify($passwd, $memberObj->passwd)){
                 $_SESSION['member'] = $memberObj;
