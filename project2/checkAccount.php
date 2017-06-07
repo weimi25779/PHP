@@ -13,7 +13,7 @@
     $login_password = $_POST['passwd'];
 
     //檢查帳號密碼是否正確
-    $sql = "SELECT * FROM member WHERE account = ?";
+    $sql = "SELECT * FROM user WHERE account = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$login_user]);
     if ($stmt->rowCount()>0){
