@@ -14,83 +14,89 @@
   <body>
     <p align="center"><img src="Title.png"></p>
     <?php
-      require_once("dbtools.inc.php");
-      
-      //取得登入者帳號及名稱
-      session_start();
-	  if (isset($_SESSION["login_user"]))
-	  {
-        $login_user = $_SESSION["login_user"];
-        $login_name = $_SESSION["login_name"];
-	  }
-					
-      //建立資料連接
-      $link = create_connection();
-														
-      //取得所有相簿的資料
-      $sql = "SELECT id, name, owner FROM album order by name";
-      $album_result = execute_sql($link, "album", $sql);
-      
-      //取得相簿的數目
-      $total_album = mysqli_num_rows($album_result);
-      
-      echo "<p align='center'>$total_album Albums</p>";
-      echo "<table border='0' align='center'>";
 
-      //指定每列顯示幾個相簿
-      $album_per_row = 5;
-      					
-      //顯示相簿清單
-      $i = 1;
-      while ($row = mysqli_fetch_assoc($album_result))
-      {
-      	//取得相簿編號、名稱及相簿的主人
-      	$album_id = $row["id"];
-      	$album_name = $row["name"];
-      	$album_owner = $row["owner"];
-      	
-      	$sql = "SELECT filename FROM photo WHERE album_id = $album_id";
-      	$photo_result = execute_sql($link, "album", $sql);
-      	
-      	//取得相簿的相片數目
-      	$total_photo = mysqli_num_rows($photo_result);
-      	
-      	//相片數目大於 0 就以第一張相片當作相簿封面，否則以 None.png 當封面
-      	if ($total_photo > 0)
-          $cover_photo = mysqli_fetch_object($photo_result)->filename;
-      	else
-      	  $cover_photo = "None.png";
-      	
-      	//釋放記憶體  
-      	mysqli_free_result($photo_result);
-      	
-        if ($i % $album_per_row == 1)
-          echo "<tr align='center' valign='top'>";
-          
-        echo "<td width='160px'>
-              <a href='showAlbum.php?album_id=$album_id'>
-              <img src='Thumbnail/$cover_photo' style='border-color:Black;border-width:1px'>
-              <br>$album_name</a><br>$total_photo Pictures";
-        
-        if (isset($login_user) && $album_owner == $login_user)
-        {
-          echo "<br><a href='editAlbum.php?album_id=$album_id'>編輯</a> 
-                <a href='#' onclick='DeleteAlbum($album_id)'>刪除</a>";
-        }
-        
-        echo "<p></td>";
-        
-        if ($i % $album_per_row == 0 || $i == $total_album)
-          echo "</tr>";
-               
-        $i++;
-      }
+        include 'sql.php';
       
-      echo "</table>" ;
+        //取得登入者帳號及名稱
+        session_start();
+        if(isset($_SESSION["login_user"])){
+            $login_user = $_SESSION["login_user"];
+            $login_name = $_SESSION["login_name"];
+        }
+
+
+        //建立資料連接
+        $pdo=new pdo($dsn,$user,$passwd,$opt);
+														
+        //取得所有相簿的資料
+        $sql="SELECT * FROM album";
+        $album_object=$pdo->prepare($sql);
+        $album_object->execute();
+
+
+        //取得相簿的數目
+        $total_album = $album_object->rowCount();
+      
+        echo "<p align='center'>$total_album Albums</p>";
+        echo "<table border='0' align='center'>";
+
+        //指定每列顯示幾個相簿
+        $album_per_row = 5;
+      					
+        //顯示相簿清單
+        $i = 1;
+        while ($row=$album_object->fetchObject())
+        {
+            //取得相簿編號、名稱及相簿的主人
+            $album_id=$row->id;
+            $album_name=$row->name;
+            $album_owner=$row->owner;
+      	
+      	    $sql = "SELECT filename FROM photo WHERE album_id = $album_id";
+            $photo_object=$pdo->prepare($sql);
+            $photo_object->execute(); //表格
+            $photo=$photo_object->fetchObject(); //取表格的一列
+      	
+      	    //取得相簿的相片數目
+      	    //$total_photo = mysqli_num_rows($photo_object);
+            $total_photo = $photo_object->rowCount();
+      	
+      	    //相片數目大於 0 就以第一張相片當作相簿封面，否則以 None.png 當封面
+      	    if ($total_photo > 0)
+                $cover_photo = $photo->filename;
+      	    else
+      	        $cover_photo = "None.png";
+
+            //釋放記憶體
+            //mysqli_free_result($photo_object);
+      	
+            if ($i % $album_per_row == 1)
+              echo "<tr align='center' valign='top'>";
+          
+            echo "<td width='160px'>
+                  <a href='showAlbum.php?album_id=$album_id'>
+                  <img src='Thumbnail/$cover_photo' style='border-color:Black;border-width:1px'>
+                  <br>$album_name</a><br>$total_photo Pictures";
+        
+            if (isset($login_user) && $album_owner == $login_user)
+            {
+              echo "<br><a href='editAlbum.php?album_id=$album_id'>編輯</a> 
+                    <a href='#' onclick='DeleteAlbum($album_id)'>刪除</a>";
+            }
+        
+            echo "<p></td>";
+        
+            if ($i % $album_per_row == 0 || $i == $total_album)
+              echo "</tr>";
+
+            $i++;
+        }
+      
+        echo "</table>" ;
 											  		
-      //釋放記憶體並關閉資料連接
-      mysqli_free_result($album_result);
-      mysqli_close($link);
+          //釋放記憶體並關閉資料連接
+          //mysqli_free_result($album_object);
+          //mysqli_close($link);
       
       echo "<hr><p align='center'>";
       

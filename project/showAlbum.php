@@ -13,58 +13,60 @@
   </head>	
   <body>
     <p align="center"><img src="Title.png"></p>
-    <?php 
-      require_once("dbtools.inc.php");
-      $album_id = $_GET["album_id"]; 
+    <?php
+        include 'sql.php';
+        $album_id = $_GET["album_id"];
       
-      //取得登入者的帳號
+        //取得登入者的帳號
 	    $login_user = "";
 	    session_start();
 	    if (isset($_SESSION["login_user"]))
         $login_user = $_SESSION["login_user"];
       
-      //建立資料連接
-      $link = create_connection();
+        //建立資料連接
+        $pdo=new pdo($dsn,$user,$passwd,$opt);
 
-      //取得相簿的名稱及相簿的主人
-      $sql = "SELECT name, owner FROM album WHERE id = $album_id";
-      $result = execute_sql($link, "album", $sql);
-      $row = mysqli_fetch_object($result);
-      $album_name = $row->name;
-      $album_owner = $row->owner;
+        //取得相簿的名稱及相簿的主人
+        $sql = "SELECT name, owner FROM album WHERE id = $album_id";
+        $album_object=$pdo->prepare($sql);
+        $album_object->execute();
+        $row = $album_object->fetchObject();
+        $album_name = $row->name;
+        $album_owner = $row->owner;
       
-      echo "<p align='center'>$album_name</p>";
+        echo "<p align='center'>$album_name</p>";
 													
-      //取得相簿裡所有照片的縮圖
-      $sql = "SELECT id, name, filename FROM photo WHERE album_id = $album_id";
-      $result = execute_sql($link, "album", $sql);
-	    $total_photo = mysqli_num_rows($result);
+        //取得相簿裡所有照片的縮圖
+        $sql = "SELECT id, name, filename FROM photo WHERE album_id = $album_id";
+        $photo_object=$pdo->prepare($sql);
+        $photo_object->execute();
+	    $total_photo = $photo_object->rowCount();
 	  
-      echo "<table border='0' align='center'>";
+        echo "<table border='0' align='center'>";
 
-      //指定每列顯示幾張照片
-      $photo_per_row = 5;
+        //指定每列顯示幾張照片
+        $photo_per_row = 5;
       					
-      //顯示相片縮圖
-      $i = 1;
-      while ($row = mysqli_fetch_assoc($result))
-      {
-      	$photo_id = $row["id"];
-      	$photo_name = $row["name"];
-      	$file_name = $row["filename"];
+        //顯示相片縮圖
+        $i = 1;
+        while ($row =$photo_object->fetchObject())
+        {
+      	    $photo_id = $row->id;
+      	    $photo_name = $row->name;
+      	    $file_name = $row->filename;
       	
-        if ($i % $photo_per_row == 1)
-          echo "<tr align='center'>";
+            if ($i % $photo_per_row == 1)
+            echo "<tr align='center'>";
         
-        echo "<td width='160px'><a href='photoDetail.php?album=$album_id&photo=$photo_id'>
-              <img src='Thumbnail/$file_name' style='border-color:Black;border-width:1px'>
-              <br>$photo_name</a>";
+         echo "<td width='160px'><a href='photoDetail.php?album=$album_id&photo=$photo_id'>
+               <img src='Thumbnail/$file_name' style='border-color:Black;border-width:1px'>
+               <br>$photo_name</a>";
         
-        if ($album_owner == $login_user)
-          echo "<br><a href='editPhoto.php?photo_id=$photo_id'>編輯</a> 
-               <a href='#' onclick='DeletePhoto($album_id, $photo_id)'>刪除</a>";
-          
-        echo "<p></td>";
+            if ($album_owner == $login_user)
+                echo "<br><a href='editPhoto.php?photo_id=$photo_id'>編輯</a> 
+                      <a href='#' onclick='DeletePhoto($album_id, $photo_id)'>刪除</a>";
+
+          echo "<p></td>";
         
         if ($i % $photo_per_row == 0 || $i == $total_photo)
           echo "</tr>";
@@ -75,12 +77,12 @@
       echo "</table>" ;
 											  		
       //釋放資源並關閉資料連接
-      mysqli_free_result($result);
-      mysqli_close($link);
+      //mysqli_free_result($result);
+      //mysqli_close($link);
       
-      echo "<hr><p align='center'>";
-      if ($album_owner == $login_user)
-        echo "<a href='uploadPhoto.php?album_id=$album_id'>上傳相片</a> ";
+        echo "<hr><p align='center'>";
+         if ($album_owner == $login_user)
+            echo "<a href='uploadPhoto.php?album_id=$album_id'>上傳相片</a> ";
     ?>
     <a href='index.php'>回首頁</a></p>
   </body>                                                                                 
